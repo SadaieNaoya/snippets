@@ -1,10 +1,11 @@
 // SearchSnippets.js
 
-export async function searchSnippets({ keyword, language, project }) {
+export async function searchSnippets({ keyword,keywordMode,language, project }) {
   const payload = {
     type: 'searchSnippets',
     data: {
       keyword,
+      keywordMode, // 追加
       language_id: language,
       project_id: project
     }

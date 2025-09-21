@@ -1,5 +1,6 @@
 <template>
   <select v-model="selected" class="custom-select">
+    <option value="">未選択</option> <!-- 追加 -->
     <option v-for="project in projects" :key="project.project_id" :value="project.project_id">
       {{ project.project_name }}
     </option>
@@ -19,7 +20,7 @@ export default {
       selected: ''
     };
   },
-    watch: {
+  watch: {
     selected(newVal) {
       this.$emit('select', newVal); // 言語IDを親に渡す
     }

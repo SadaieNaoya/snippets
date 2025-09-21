@@ -4,12 +4,17 @@
     <LanguagesWrapper @update:language="selectedLanguage = $event" />
     <ProjectsWrapper @update:project="selectedProject = $event" />
     <TextInput v-model="keyword" placeholder="キーワードを入力" />
+    <select v-model="keywordMode">
+      <option value="AND">AND検索</option>
+      <option value="OR">OR検索</option>
+    </select>
+
     <select v-model="sortOrder">
       <option value="asc">タイトル昇順</option>
       <option value="desc">タイトル降順</option>
     </select>
     <SearchButton :keyword="keyword" :language="selectedLanguage" :project="selectedProject" @search="sendToGAS" />
-    <SearchResultsTable :results="results" />
+    <SearchResultsTable :results="sortedResults" />
 
     <div v-if="loading">検索中...</div>
     <div v-if="error" class="error">{{ error }}</div>
@@ -38,12 +43,28 @@ export default {
   data() {
     return {
       keyword: '',
+      keywordMode: 'AND',
       selectedLanguage: '',
       selectedProject: '',
       results: [],
       loading: false,
-      error: null
+      error: null,
+      sortOrder: 'asc',    // ←初期値を"asc"（昇順）に
     };
+  },
+  computed: {
+    // これが「ソート済み配列」を返すcomputed
+    sortedResults() {
+      if (!this.results || !this.results.length) return [];
+      // results配列をコピー（元データを破壊しない）
+      let arr = [...this.results];
+      arr.sort((a, b) => {
+        // titleの文字列を比較
+        const cmp = a.title.localeCompare(b.title);
+        return this.sortOrder === 'asc' ? cmp : -cmp;
+      });
+      return arr;
+    }
   },
   methods: {
     async sendToGAS(payload) {
@@ -55,6 +76,7 @@ export default {
         // 受け取ったpayloadにkeyword,language,projectを補完
         const searchPayload = {
           keyword: this.keyword,
+          keywordMode: this.keywordMode, // AND/ORを渡す
           language_id: this.selectedLanguage,
           project_id: this.selectedProject,
           limit: 50,
