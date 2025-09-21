@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { fetchLanguages } from '../../composables/FetchLanguages.js';
+import { fetchLanguages } from '../../composables/Languages.js';
 import ShowLanguages from './ShowLanguages.vue';
 
 export default {

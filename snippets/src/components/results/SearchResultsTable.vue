@@ -19,8 +19,8 @@
         <td>
           <pre>{{ item.code }}</pre>
         </td>
-        <td>{{ item.language_id }}</td>
-        <td>{{ item.project_id }}</td>
+        <td>{{ item.language_name }}</td>
+        <td>{{ item.project_name }}</td>
         <td>{{ item.description }}</td>
         <td>{{ item.tags }}</td>
         <td>{{ item.memo }}</td>

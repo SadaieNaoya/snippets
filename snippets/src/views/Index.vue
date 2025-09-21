@@ -4,6 +4,10 @@
     <LanguagesWrapper @update:language="selectedLanguage = $event" />
     <ProjectsWrapper @update:project="selectedProject = $event" />
     <TextInput v-model="keyword" placeholder="キーワードを入力" />
+    <select v-model="sortOrder">
+      <option value="asc">タイトル昇順</option>
+      <option value="desc">タイトル降順</option>
+    </select>
     <SearchButton :keyword="keyword" :language="selectedLanguage" :project="selectedProject" @search="sendToGAS" />
     <SearchResultsTable :results="results" />
 
@@ -15,7 +19,7 @@
 </template>
 
 <script>
-import { searchSnippets } from '../composables/SearchSnippets';
+import { searchSnippets } from '../composables/Snippets';
 import SearchButton from '../components/buttons/SearchButton.vue';
 import TextInput from '../components/common/TextInput.vue';
 import LanguagesWrapper from '../components/languages/LanguagesWrapper.vue';
@@ -109,5 +113,4 @@ pre {
   white-space: pre-wrap;
   word-break: break-word;
 }
-
 </style>
