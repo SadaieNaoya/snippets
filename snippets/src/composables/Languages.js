@@ -28,3 +28,18 @@ export function fetchLanguages() {
     fetchLanguages
   };
 }
+
+// 既存のfetchLanguagesはそのまま活かせるので併用可能
+
+export async function fetchLanguagesAPI() {
+  const response = await fetch("/api", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "getAllLanguages" }),
+  });
+  if(!response.ok){
+    throw new Error("Languages API fetch error");
+  }
+  return await response.json();
+}
+

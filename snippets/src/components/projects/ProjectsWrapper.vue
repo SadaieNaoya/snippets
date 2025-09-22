@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { fetchProjects } from '../../composables/Project';
+import { fetchProjects } from '../../composables/Projects';
 import ShowProjects from './ShowProjects.vue';
 
 export default {

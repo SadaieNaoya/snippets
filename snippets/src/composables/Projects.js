@@ -26,3 +26,15 @@ export function fetchProjects() {
     fetchProjects
   };
 }
+
+export async function fetchProjectsAPI() {
+  const response = await fetch("/api", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ type: "getAllProjects" }),
+  });
+  if (!response.ok) {
+    throw new Error("Projects API fetch error");
+  }
+  return await response.json();
+}
