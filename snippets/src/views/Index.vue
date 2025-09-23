@@ -270,43 +270,4 @@ pre.code-content {
   font-family: monospace;
 }
 
-.btn-edit,
-.btn-delete {
-  font-size: 0.85rem;
-  /* 少し小さく */
-  padding: 4px 10px;
-  /* タテヨコのパディング調節 */
-  min-width: 60px;
-  /* 最小幅確保 */
-  border-radius: 6px;
-  /* 角丸 */
-  cursor: pointer;
-  margin-bottom: 4px;
-  /* ボタン間の縦間隔 */
-  display: block;
-  /* 重ならないように改行 */
-}
-
-/* 編集と削除で色を区別したい場合 */
-.btn-edit {
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-}
-
-.btn-edit:hover {
-  background-color: var(--color-primary-hover);
-}
-
-.btn-delete {
-  background-color: var(--color-primary-sub);
-  color: white;
-  border: none;
-}
-
-.btn-delete:hover {
-  background-color: var(--color-primary-sub-hover);
-}
-
-
 </style>

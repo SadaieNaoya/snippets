@@ -70,7 +70,7 @@
           <td>
             <template v-if="isEditing(item.id)">
               <button class="btn-save" @click="saveEdit(item.id)">保存</button>
-              <button class="btn-cancel" @click="cancelEdit">キャンセル</button>
+              <button class="btn-cancel" @click="cancelEdit">戻る</button>
             </template>
             <template v-else>
               <button class="btn-edit" @click="startEdit(item)">編集</button>
@@ -145,20 +145,81 @@ export default {
 table {
   border-collapse: collapse;
   width: 100%;
+  table-layout: fixed;
+  /* 各セルを均等に扱う */
 }
 
 th,
 td {
   border: 1px solid #ccc;
   padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  word-break: break-word;
+  /* 長い文字を折り返し */
 }
 
-button {
-  margin-right: 5px;
+/* 編集時のinputやtextareaをセル幅に収める */
+td input,
+td select,
+td textarea {
+  width: 100%;
+  box-sizing: border-box;
+  /* padding込みで幅を合わせる */
+  font-size: 0.9rem;
 }
 
-textarea {
-  font-family: monospace;
+/* コードセル */
+.code-cell {
+  max-width: 250px;
+  /* 適宜調整 */
+  overflow-wrap: break-word;
+}
+
+.code-content {
   white-space: pre-wrap;
+  /* 折り返して表示 */
+  font-family: monospace;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* 編集と削除で色を区別したい場合 */
+.btn-edit,
+.btn-save {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+}
+
+.btn-edit:hover,
+.btn-save:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-delete,
+.btn-cancel {
+  margin-top: 15px;
+  background-color: var(--color-primary-sub);
+  color: white;
+  border: none;
+}
+
+.btn-delete:hover,
+.btn-cancel:hover {
+  background-color: var(--color-primary-sub-hover);
+}
+
+.btn-edit,
+.btn-delete,
+.btn-cancel,
+.btn-save {
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  min-width: 60px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 4px;
+  display: block;
 }
 </style>
