@@ -14,7 +14,7 @@
     </select>
     <SearchButton :keyword="keyword" :language="selectedLanguage" :project="selectedProject" @search="sendToGAS" />
     <SearchResultsTable :results="sortedResults" :languages="languages" :projects="projects"
-      @update-item="handleUpdateItem" />
+      @update-item="handleUpdateItem" @delete-item="handleDeleteItem" />
     <div v-if="loading">検索中...</div>
     <div v-if="error" class="error">{{ error }}</div>
   </div>
@@ -29,6 +29,7 @@ import ProjectsWrapper from '../components/projects/ProjectsWrapper.vue';
 import SearchResultsTable from '../components/results/SearchResultsTable.vue';
 import { fetchLanguagesAPI } from '../composables/Languages.js';
 import { fetchProjectsAPI } from '../composables/Projects.js';
+import { deleteSnippetAPI } from '../composables/Snippets';
 
 export default {
   name: 'Index',
@@ -109,9 +110,21 @@ export default {
       } catch (e) {
         this.error = e.message || "更新中にエラーが発生しました。";
       }
+    },
+  async handleDeleteItem(id) {
+      if (!confirm("このスニペットを削除します。よろしいですか？")) {
+        return;
+      }
+      try {
+        await deleteSnippetAPI(id);
+        // 画面上の配列から該当スニペットを削除
+        this.results = this.results.filter(item => item.id !== id);
+      } catch (e) {
+        this.error = e.message || "削除処理に失敗しました。";
+      }
     }
-  },
-};
+  }
+}
 </script>
 
 <style>

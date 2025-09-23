@@ -52,3 +52,29 @@ console.log(snippet)
 
   return result;
 }
+
+export async function deleteSnippetAPI(snippet_id) {
+  const payload = {
+    type: 'deleteSnippet',
+    snippet_id: snippet_id
+  };
+  const response = await fetch('/api', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const result = await response.json();
+
+  if (result.error) {
+    throw new Error(result.message || "削除失敗");
+  }
+
+  return result;
+}
