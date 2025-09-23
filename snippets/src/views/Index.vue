@@ -3,7 +3,6 @@
     <div class="container">
       <h1 class="page-title">検索</h1>
       <div class="search-section">
-
         <TextInput v-model="keyword" placeholder="キーワードを入力" class="keyword-input" />
 
         <div class="select-group secondary">
@@ -11,7 +10,6 @@
           <ProjectsWrapper @update:project="selectedProject = $event" />
         </div>
 
-        <!-- 改行したいので区切りのdiv -->
         <div class="select-group">
           <select v-model="keywordMode" class="small-select">
             <option value="AND">AND検索</option>
@@ -31,9 +29,13 @@
       <SearchResultsTable :results="sortedResults" :languages="languages" :projects="projects"
         @update-item="handleUpdateItem" @delete-item="handleDeleteItem" />
 
-      <div v-if="loading" class="loading">検索中...</div>
+      <div v-if="loading" class="loading">
+        <CatLoading />
+      </div>
+
       <div v-if="error" class="error">{{ error }}</div>
     </div>
+
     <footer class="footer">
       <a href="https://lordicon.com/">Icons by Lordicon.com</a>
     </footer>
@@ -51,6 +53,9 @@ import { fetchLanguagesAPI } from '../composables/Languages.js';
 import { fetchProjectsAPI } from '../composables/Projects.js';
 import { deleteSnippetAPI } from '../composables/Snippets';
 
+// ここでSVGコンポーネントをインポート
+import CatLoading from '@/components/CatLoading.vue';
+
 export default {
   name: 'Index',
   components: {
@@ -59,6 +64,7 @@ export default {
     TextInput,
     SearchButton,
     SearchResultsTable,
+    CatLoading,  // 登録
   },
   data() {
     return {
@@ -144,7 +150,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style>
@@ -309,5 +315,12 @@ pre.code-content {
   border-bottom: 3px solid var(--color-primary);
   width: fit-content;
   /* 線の長さをテキスト幅に */
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 </style>
