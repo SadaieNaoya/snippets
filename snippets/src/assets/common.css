@@ -1,19 +1,39 @@
 /* カラーテーマ変数例 */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Fira+Code&family=Montserrat:wght@400;500;700&family=Monoton&family=Orbitron:wght@400;500;700&family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+
 :root {
     --color-bg: #f9fbed;
     --color-primary: #9aab73;
     --color-primary-hover: #b4c27f;
     --color-text: #3c5034;
+    --color-text2: #ffffff;
     --color-border: #abb7a0;
     --color-tag-bg: #dde1ce;
     --color-primary-sub: #b6c98a;
     --color-primary-sub-hover: #797f62;
+    --color-primary-sub2: #d8e7b9;
+    --color-primary-sub-hover2: #797f62;
 
+    /* フォント変数 */
+    --font-text: "Tahoma", Geneva, Verdana, sans-serif;
+    --font-heading: "Bebas Neue", "Montserrat", sans-serif;
+    --font-mono: "Fira Code", monospace;
+    --font-anton: 'Anton', sans-serif;
+    --font-orbitron: 'Orbitron', sans-serif;
+    --font-staatliches: 'Staatliches', sans-serif;
+    --font-monoton: 'Monoton', cursive;
+
+    /*日本語系*/
+    --font-text2: "M PLUS Rounded 1c", "Kosugi Maru", sans-serif;
+    --font-heading2: "Sawarabi Gothic", "M PLUS Rounded 1c", sans-serif;
 }
 
 /* 全体スタイル */
 body {
-    font-family: "Tahoma", Geneva, Verdana, sans-serif;
+    font-family: var(--font-text2);
     background-color: var(--color-bg);
     color: var(--color-text);
     margin: 0;
@@ -70,7 +90,7 @@ button:hover {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--color-primary-sub);
+    background-color: var(--color-primary-sub2);
     color: white;
     /* 見やすくする場合 */
     padding: 0.8rem 1.5rem;
@@ -103,3 +123,4 @@ button:hover {
     align-items: center;
     z-index: 1500;
 }
+

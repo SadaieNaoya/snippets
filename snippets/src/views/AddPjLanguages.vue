@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font">
     <div class="container">
 
       <h1 class="page-title">言語・プロジェクト追加</h1>
@@ -38,10 +38,10 @@ export default {
       this.error = null;
       try {
         const added = await addLanguageAPI(language_name);
-        alert(`言語「${added.language_name}」を追加しました`);
+        //alert(`言語「${added.language_name}」を追加しました`);
       } catch (e) {
         this.error = e.message || '言語の追加に失敗しました';
-        alert(this.error);
+        //alert(this.error);
       } finally {
         this.loading = false;
       }
@@ -51,10 +51,10 @@ export default {
       this.error = null;
       try {
         const added = await addProjectAPI(project_name);
-        alert(`プロジェクト「${added.project_name}」を追加しました`);
+        //alert(`プロジェクト「${added.project_name}」を追加しました`);
       } catch (e) {
         this.error = e.message || 'プロジェクトの追加に失敗しました';
-        alert(this.error);
+        //alert(this.error);
       } finally {
         this.loading = false;
       }

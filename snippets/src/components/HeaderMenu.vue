@@ -16,8 +16,8 @@ export default {
 .header-menu {
   display: flex;
   gap: 24px;
-  padding: 16px 2.5rem; /* index.vueのcontainerの左右paddingに合わせる */
-  background-color: var(--color-bg);
+  padding: 16px 2.5rem;
+  background-color: var(--color-primary-sub2);
   font-size: 1.1rem;
   font-weight: bold;
   border-bottom: 1px solid var(--color-border);

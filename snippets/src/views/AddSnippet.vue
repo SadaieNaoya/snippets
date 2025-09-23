@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="font">
     <div class="container">
       <h1 class="page-title">スニペッド追加</h1>
       <div v-if="loading" class="loading-overlay">
@@ -40,7 +40,7 @@ export default {
         this.error = null;
         try {
           const added = await addSnippetAPI(newSnippet);
-          alert('追加成功: ' + added.title);
+          //alert('追加成功: ' + added.title);
         } catch (e) {
           this.error = e.message || '追加に失敗しました。';
         } finally {
