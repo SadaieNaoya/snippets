@@ -29,8 +29,8 @@
       <SearchResultsTable :results="sortedResults" :languages="languages" :projects="projects"
         @update-item="handleUpdateItem" @delete-item="handleDeleteItem" />
 
-      <div v-if="loading" class="loading">
-        <CatLoading />
+      <div v-if="loading" class="loading-overlay">
+        <CatLoading/>
       </div>
 
       <div v-if="error" class="error">{{ error }}</div>

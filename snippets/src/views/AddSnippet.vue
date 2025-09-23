@@ -2,6 +2,10 @@
   <div>
     <div class="container">
       <h1 class="page-title">スニペッド追加</h1>
+      <div v-if="loading" class="loading-overlay">
+        <CatLoading/>
+      </div>
+
       <AddSnippetForm :languages="languages" :projects="projects" @add-snippet="handleAddSnippet" />
     </div>
     <footer class="footer">
@@ -9,36 +13,41 @@
     </footer>
   </div>
 </template>
-
 <script>
 import AddSnippetForm from '@/components/snippets/AddSnippetForm.vue';
+import CatLoading from '@/components/CatLoading.vue';
 import { fetchLanguagesAPI } from '@/composables/Languages';
 import { fetchProjectsAPI } from '@/composables/Projects';
 import { addSnippetAPI } from '@/composables/Snippets';
 
 export default {
-  components: { AddSnippetForm },
+  components: { AddSnippetForm ,CatLoading},
   data() {
     return {
       languages: [],
       projects: [],
       error: null,
+      loading: false,
     };
   },
   async mounted() {
     this.languages = await fetchLanguagesAPI();
     this.projects = await fetchProjectsAPI();
   },
-  methods: {
-    async handleAddSnippet(newSnippet) {
-      try {
-        const added = await addSnippetAPI(newSnippet);
-        alert('追加成功: ' + added.title);
-        // 必要に応じて画面遷移やリスト更新
-      } catch (e) {
-        this.error = e.message || '追加に失敗しました。';
-      }
-    }
-  }
-};
+    methods: {
+      async handleAddSnippet(newSnippet) {
+        this.loading = true;
+        this.error = null;
+        try {
+          const added = await addSnippetAPI(newSnippet);
+          alert('追加成功: ' + added.title);
+        } catch (e) {
+          this.error = e.message || '追加に失敗しました。';
+        } finally {
+          this.loading = false;
+        }
+      },
+    },
+}
 </script>
+

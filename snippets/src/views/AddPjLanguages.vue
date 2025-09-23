@@ -7,6 +7,10 @@
       <hr class="divider" />
       <AddProjectForm @add-project="handleAddProject" />
     </div>
+    <div v-if="loading" class="loading-overlay">
+      <CatLoading />
+    </div>
+
     <footer class="footer">
       <a href="https://lordicon.com/">Icons by Lordicon.com</a>
     </footer>
@@ -14,30 +18,45 @@
 </template>
 
 <script>
+import CatLoading from '@/components/CatLoading.vue';
 import AddLanguageForm from '@/components/languages/AddLanguageForm.vue';
 import AddProjectForm from '@/components/projects/AddProjectForm.vue';
 import { addLanguageAPI } from '@/composables/Languages.js';
 import { addProjectAPI } from '@/composables/Projects.js';
 
 export default {
-  components: { AddLanguageForm, AddProjectForm },
+  components: { AddLanguageForm, AddProjectForm, CatLoading },
+  data() {
+    return {
+      loading: false,
+      error: null
+    };
+  },
   methods: {
     async handleAddLanguage(language_name) {
+      this.loading = true;
+      this.error = null;
       try {
         const added = await addLanguageAPI(language_name);
         alert(`言語「${added.language_name}」を追加しました`);
-        // 必要に応じ画面更新処理を追加
       } catch (e) {
-        alert(e.message || '言語の追加に失敗しました');
+        this.error = e.message || '言語の追加に失敗しました';
+        alert(this.error);
+      } finally {
+        this.loading = false;
       }
     },
     async handleAddProject(project_name) {
+      this.loading = true;
+      this.error = null;
       try {
         const added = await addProjectAPI(project_name);
         alert(`プロジェクト「${added.project_name}」を追加しました`);
-        // 必要に応じ画面更新処理を追加
       } catch (e) {
-        alert(e.message || 'プロジェクトの追加に失敗しました');
+        this.error = e.message || 'プロジェクトの追加に失敗しました';
+        alert(this.error);
+      } finally {
+        this.loading = false;
       }
     }
   }

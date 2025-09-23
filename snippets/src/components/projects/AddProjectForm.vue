@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$emit('add-language', this.projectName);
+      this.$emit('add-project', this.projectName);
       this.projectName = '';
     }
   }
