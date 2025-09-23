@@ -2,7 +2,7 @@
   <nav class="header-menu">
     <router-link to="/" exact-active-class="active" exact>検索</router-link>
     <router-link to="/addsnippet" active-class="active">スニペッド追加</router-link>
-    <router-link to="/addpjlanguages" active-class="active">PJ･言語追加</router-link>
+    <router-link to="/addpjlanguages" active-class="active">言語･PJ追加</router-link>
   </nav>
 </template>
 
