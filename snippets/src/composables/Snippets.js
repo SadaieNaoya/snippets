@@ -78,3 +78,23 @@ export async function deleteSnippetAPI(snippet_id) {
 
   return result;
 }
+
+export async function addSnippetAPI(snippet) {
+  const payload = {
+    type: 'addSnippet',
+    data: snippet
+  };
+  const response = await fetch('/api', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  const result = await response.json();
+  if (result.error) {
+    throw new Error(result.message || '追加失敗');
+  }
+  return result;
+}

@@ -43,3 +43,11 @@ export async function fetchLanguagesAPI() {
   return await response.json();
 }
 
+export async function addLanguageAPI(language_name) {
+  const payload = { type: 'addLanguage', language_name };
+  const res = await fetch('/api', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+  if (!res.ok) throw new Error('HTTPエラー');
+  const data = await res.json();
+  if (data.error) throw new Error(data.message);
+  return data;
+}

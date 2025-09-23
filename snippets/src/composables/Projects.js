@@ -38,3 +38,12 @@ export async function fetchProjectsAPI() {
   }
   return await response.json();
 }
+
+export async function addProjectAPI(project_name) {
+  const payload = { type: 'addProject', project_name };
+  const res = await fetch('/api', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+  if (!res.ok) throw new Error('HTTPエラー');
+  const data = await res.json();
+  if (data.error) throw new Error(data.message);
+  return data;
+}

@@ -3,8 +3,8 @@ import Router from 'vue-router'
 
 // viewsフォルダの3ファイル（ファイル名は命名規則どおりパスカルケースにしてください）
 import Index from '@/views/Index'
-import Add from '@/views/Add'
-import Settings from '@/views/Settings'
+import Add from '@/views/AddSnippet'
+import Settings from '@/views/AddPjLanguages'
 
 Vue.use(Router)
 
@@ -17,13 +17,13 @@ export default new Router({
       component: Index
     },
     {
-      path: '/add',
-      name: 'Add',
+      path: '/addsnippet',
+      name: 'AddSnippet',
       component: Add
     },
     {
-      path: '/settings',
-      name: 'Settings',
+      path: '/addpjlanguages',
+      name: 'AddPjLanguages',
       component: Settings
     }
   ]
