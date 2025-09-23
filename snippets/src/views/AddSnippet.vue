@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h2>スニペッド追加</h2>
-    <AddSnippetForm :languages="languages" :projects="projects" @add-snippet="handleAddSnippet" />
+    <div class="container">
+      <h1 class="page-title">スニペッド追加</h1>
+      <AddSnippetForm :languages="languages" :projects="projects" @add-snippet="handleAddSnippet" />
+    </div>
+    <footer class="footer">
+      <a href="https://lordicon.com/">Icons by Lordicon.com</a>
+    </footer>
   </div>
 </template>
 

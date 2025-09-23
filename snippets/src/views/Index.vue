@@ -309,18 +309,4 @@ pre.code-content {
 }
 
 
-.page-title {
-  margin-bottom: 1rem;
-  padding-bottom: 0.3rem;
-  border-bottom: 3px solid var(--color-primary);
-  width: fit-content;
-  /* 線の長さをテキスト幅に */
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
 </style>

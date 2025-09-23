@@ -1,8 +1,15 @@
 <template>
   <div>
-    <h2>言語・プロジェクト追加</h2>
-    <AddLanguageForm @add-language="handleAddLanguage" />
-    <AddProjectForm @add-project="handleAddProject" />
+    <div class="container">
+
+      <h1 class="page-title">言語・プロジェクト追加</h1>
+      <AddLanguageForm @add-language="handleAddLanguage" />
+      <hr class="divider" />
+      <AddProjectForm @add-project="handleAddProject" />
+    </div>
+    <footer class="footer">
+      <a href="https://lordicon.com/">Icons by Lordicon.com</a>
+    </footer>
   </div>
 </template>
 
@@ -36,3 +43,23 @@ export default {
   }
 };
 </script>
+<style scoped>
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 1.5rem 0;
+  /* 前後の余白 */
+  width: 100%;
+  opacity: 0.6;
+}
+
+.forms-wrapper {
+  display: flex;
+  flex-direction: column;
+  /* 縦に並べる */
+  align-items: center;
+  /* 横方向に中央寄せ */
+  gap: 2rem;
+  /* フォーム間に余白 */
+}
+</style>
