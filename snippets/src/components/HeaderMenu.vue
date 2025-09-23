@@ -5,30 +5,39 @@
     <router-link to="/addpjlanguages" active-class="active">PJ･言語追加</router-link>
   </nav>
 </template>
+
 <script>
-export default { name: 'HeaderMenu' }
+export default {
+  name: 'HeaderMenu',
+};
 </script>
+
 <style scoped>
 .header-menu {
   display: flex;
   gap: 24px;
-  padding: 16px 0;
-  background: #f5f8fa;
-  font-size: 1.1em;
+  padding: 16px 2.5rem; /* index.vueのcontainerの左右paddingに合わせる */
+  background-color: var(--color-bg);
+  font-size: 1.1rem;
   font-weight: bold;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border);
 }
+
 .header-menu .active {
-  color: #1976d2;
-  border-bottom: 2px solid #1976d2;
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
 }
+
 .header-menu a {
-  color: #555;
+  color: var(--color-text);
   text-decoration: none;
   padding: 0 8px 4px 8px;
-  transition: color 0.2s;
+  transition: color 0.3s;
+  border-bottom: 3px solid transparent;
 }
+
 .header-menu a:hover {
-  color: #2196f3;
+  color: var(--color-primary-hover);
+  border-bottom-color: var(--color-primary-hover);
 }
 </style>
